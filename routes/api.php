@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ModulAuth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+//Route Modul Auth
+Route::post('/loginPenduduk', [LoginController::class, 'loginPenduduk'])->name('login.penduduk');
+Route::post('/loginPegawai', [LoginController::class, 'loginPegawai'])->name('login.pegawai');
