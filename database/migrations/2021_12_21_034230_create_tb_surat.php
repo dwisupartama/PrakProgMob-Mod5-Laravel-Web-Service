@@ -19,9 +19,9 @@ class CreateTbSurat extends Migration
             $table->string('jenis_surat', 30);
             $table->date('tanggal_pengajuan');
             $table->enum('status_pengajuan', ['Menunggu Konfirmasi', 'Sedang di Proses', 'Selesai di Proses', 'Pengajuan Gagal']);
-            $table->text('keterangan');
-            $table->date('perkiraan_selesai');
-            $table->date('tanggal_selesai');
+            $table->text('keterangan')->nullable();
+            $table->date('perkiraan_selesai')->nullable();
+            $table->date('tanggal_selesai')->nullable();
             $table->text('deskripsi_pengajuan');
             $table->string('file_surat', 200);
             $table->timestamps();

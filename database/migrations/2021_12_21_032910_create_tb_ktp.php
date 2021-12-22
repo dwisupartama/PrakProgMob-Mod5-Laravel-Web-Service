@@ -18,9 +18,9 @@ class CreateTbKtp extends Migration
             $table->enum('jenis_pengajuan', ['Pembuatan KTP', 'KTP Rusak/Hilang', 'KTP Perbaikan']);
             $table->date('tanggal_pengajuan');
             $table->enum('status_pengajuan', ['Menunggu Konfirmasi', 'Sedang di Proses', 'Selesai di Proses', 'Pengajuan Gagal']);
-            $table->text('keterangan');
-            $table->date('perkiraan_selesai');
-            $table->date('tanggal_selesai');
+            $table->text('keterangan')->nullable();
+            $table->date('perkiraan_selesai')->nullable();
+            $table->date('tanggal_selesai')->nullable();
             $table->bigInteger('nik');
             $table->string('nama_lengkap', 50);
             $table->string('tempat_lahir', 30);
