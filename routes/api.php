@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ModulAuth\LoginController;
+use App\Http\Controllers\Api\ModulKTP\KTPController;
 use App\Http\Controllers\Api\ModulAuth\PengaturanProfilController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,7 @@ Route::post('/loginPegawai', [LoginController::class, 'loginPegawai'])->name('lo
 Route::get('/ambilDataProfil/{nik}', [PengaturanProfilController::class, 'ambilDataProfil'])->name('profil.read');
 Route::post('/perbaharuiProfil', [PengaturanProfilController::class, 'perbaharuiDataProfil'])->name('profil.update');
 Route::post('/ubahPassword', [PengaturanProfilController::class, 'ubahPassword'])->name('profil.passupdate');
+
+//Route Modul KTP
+Route::post('/pengajuanKTP', [KTPController::class, 'buatPengajuanBaru'])->name('ktp.pengajuan');
+Route::post('/updatePengajuan', [KTPController::class, 'updatePengajuan'])->name('ktp.update');
