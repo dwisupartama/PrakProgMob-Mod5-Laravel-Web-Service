@@ -26,3 +26,4 @@ Route::post('/loginPenduduk', [LoginController::class, 'loginPenduduk'])->name('
 Route::post('/loginPegawai', [LoginController::class, 'loginPegawai'])->name('login.pegawai');
 Route::get('/ambilDataProfil/{nik}', [PengaturanProfilController::class, 'ambilDataProfil'])->name('profil.read');
 Route::post('/perbaharuiProfil', [PengaturanProfilController::class, 'perbaharuiDataProfil'])->name('profil.update');
+Route::post('/ubahPassword', [PengaturanProfilController::class, 'ubahPassword'])->name('profil.passupdate');

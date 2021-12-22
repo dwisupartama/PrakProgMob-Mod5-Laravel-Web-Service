@@ -46,4 +46,38 @@ class PengaturanProfilController extends Controller
             'data' => null
         ]);
     }
+
+    public function ubahPassword(Request $request){
+        $nik = $request->nik;
+        $password_lama = $request->password_lama;
+        $password_baru = $request->password_baru;
+
+        $data = Penduduk::where('nik',$nik)->first();
+
+        if(!Hash::check($password_lama, $data->password)){
+            $code = 0;
+            $message = "Password Lama tidak sesuai";
+        }else if($password_lama == $password_baru){
+            $code = 0;
+            $message = "Password Baru tidak boleh sama dengan yang sebelumnya";
+        }else{
+            $perbaharui = Penduduk::where('nik', $nik)->update([
+                'password' => bcrypt($request->password_baru),
+            ]);
+
+            if($perbaharui){
+                $code = 1;
+                $message = "Password berhasil diperbaharui";
+            }else{
+                $code = 1;
+                $message = "Password gagal diperbaharui";
+            }
+        }
+
+        return response()->json([
+            'code' => $code,
+            'message' => $message,
+            'data' => null
+        ]);
+    }
 }
