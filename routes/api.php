@@ -46,9 +46,7 @@ Route::get('/editPenduduk/{nik}', [PendudukController::class, 'editPenduduk'])->
 Route::post('/updatePenduduk', [PendudukController::class, 'updatePenduduk'])->name('penduduk.update');
 Route::get('/resetPasswordPenduduk/{nik}', [PendudukController::class, 'resetPasswordPenduduk'])->name('penduduk.resetPassword');
 Route::get('/deletePenduduk/{nik}', [PendudukController::class, 'deletePenduduk'])->name('penduduk.delete');
-<<<<<<< HEAD
-Route::get('/searchPenduduk/{key}', [PendudukController::class, 'searchPenduduk'])->name('penduduk.search');
-=======
+
 
 //Route Modul Vaksin
 Route::post('/tambahVaksin', [VaksinController::class, 'tambahVaksin'])->name('vaksin.insert');
@@ -57,4 +55,3 @@ Route::get('/detailDataVaksin/{id}', [VaksinController::class, 'detailVaksin'])-
 Route::get('/daftarVaksinPegawai', [VaksinController::class, 'daftarVaksinPegawai'])->name('vaksin.read');
 // Route::post('/hapusVaksin', [VaksinController::class, 'hapusVaksin'])->name('vaksin.delete');
 // Route::post('/updateVaksin', [VaksinController::class, 'updateVaksin'])->name('vaksin.update');
->>>>>>> a93407f09b07468010fcbdd05a351ec683708ed4
