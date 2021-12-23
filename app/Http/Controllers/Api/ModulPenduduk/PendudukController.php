@@ -169,4 +169,14 @@ class PendudukController extends Controller
             'data' => null
         ]);
     }
+
+    public function searchPenduduk($key){
+        $penduduk = Penduduk::where('nik','LIKE','%'.$key.'%')->orWhere('nama_lengkap','LIKE','%'.$key.'%')->orderBy('created_at','desc')->get();
+
+        return response()->json([
+            'code' => 1,
+            'message' => "Data Penduduk berhasil diambil",
+            'data' => $penduduk
+        ]);
+    }
 }
