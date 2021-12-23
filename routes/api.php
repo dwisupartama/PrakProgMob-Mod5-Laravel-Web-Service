@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\ModulAuth\LoginController;
-use App\Http\Controllers\Api\ModulKTP\KTPController;
 use App\Http\Controllers\Api\ModulAuth\PengaturanProfilController;
+
+use App\Http\Controllers\Api\ModulKTP\KTPController;
+
+use App\Http\Controllers\Api\ModulPenduduk\PendudukController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +37,11 @@ Route::post('/ubahPassword', [PengaturanProfilController::class, 'ubahPassword']
 Route::post('/pengajuanKTP', [KTPController::class, 'buatPengajuanBaru'])->name('ktp.pengajuan');
 Route::get('/getPengajuanFor/{nik}', [KTPController::class, 'getPengajuanFor'])->name('ktp.getpengajuan');
 Route::post('/updatePengajuan', [KTPController::class, 'updatePengajuan'])->name('ktp.update');
+
+//Route Modul Penduduk
+Route::get('/getPenduduk', [PendudukController::class, 'getPenduduk'])->name('penduduk.read');
+Route::post('/addPenduduk', [PendudukController::class, 'addPenduduk'])->name('penduduk.add');
+Route::get('/editPenduduk/{nik}', [PendudukController::class, 'editPenduduk'])->name('penduduk.edit');
+Route::post('/updatePenduduk', [PendudukController::class, 'updatePenduduk'])->name('penduduk.update');
+Route::get('/resetPasswordPenduduk/{nik}', [PendudukController::class, 'resetPasswordPenduduk'])->name('penduduk.resetPassword');
+Route::get('/deletePenduduk/{nik}', [PendudukController::class, 'deletePenduduk'])->name('penduduk.delete');
