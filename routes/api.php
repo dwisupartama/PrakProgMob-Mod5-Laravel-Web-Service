@@ -46,7 +46,7 @@ Route::get('/editPenduduk/{nik}', [PendudukController::class, 'editPenduduk'])->
 Route::post('/updatePenduduk', [PendudukController::class, 'updatePenduduk'])->name('penduduk.update');
 Route::get('/resetPasswordPenduduk/{nik}', [PendudukController::class, 'resetPasswordPenduduk'])->name('penduduk.resetPassword');
 Route::get('/deletePenduduk/{nik}', [PendudukController::class, 'deletePenduduk'])->name('penduduk.delete');
-
+Route::get('/searchPenduduk/{key}', [PendudukController::class, 'searchPenduduk'])->name('penduduk.delete');
 
 //Route Modul Vaksin
 Route::post('/tambahVaksin', [VaksinController::class, 'tambahVaksin'])->name('vaksin.insert');
