@@ -27,7 +27,7 @@ class CreateTbVaksin extends Migration
             $table->string('tempat_vaksin', 100)->nullable();
             $table->string('jenis_vaksin', 50)->nullable();
             $table->string('daerah_vaksin_diajukan', 30);
-            $table->text('riwayat_penyakit');
+            $table->text('riwayat_penyakit')->nullable();
             $table->timestamps();
 
             // Foreign Key

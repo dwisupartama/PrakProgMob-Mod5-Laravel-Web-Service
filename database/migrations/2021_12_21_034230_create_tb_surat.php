@@ -23,7 +23,7 @@ class CreateTbSurat extends Migration
             $table->date('perkiraan_selesai')->nullable();
             $table->date('tanggal_selesai')->nullable();
             $table->text('deskripsi_pengajuan');
-            $table->string('file_surat', 200);
+            $table->string('file_surat', 200)->nullable();
             $table->timestamps();
 
             // Foreign Key
