@@ -37,6 +37,7 @@ Route::post('/ubahPassword', [PengaturanProfilController::class, 'ubahPassword']
 Route::post('/pengajuanKTP', [KTPController::class, 'buatPengajuanBaru'])->name('ktp.pengajuan');
 Route::get('/getPengajuanFor/{nik}', [KTPController::class, 'getPengajuanFor'])->name('ktp.getpengajuan');
 Route::post('/updatePengajuan', [KTPController::class, 'updatePengajuan'])->name('ktp.update');
+Route::get('/deletePengajuan/{id}', [KTPController::class, 'deletePengajuan'])->name('ktp.delete');
 
 //Route Modul Penduduk
 Route::get('/getPenduduk', [PendudukController::class, 'getPenduduk'])->name('penduduk.read');

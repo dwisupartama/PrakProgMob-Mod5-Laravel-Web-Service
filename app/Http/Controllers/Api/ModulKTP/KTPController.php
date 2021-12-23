@@ -82,4 +82,21 @@ class KTPController extends Controller
             'data' => $pengajuan
         ]);
     }
+
+    public function deletePengajuan(Request $request){
+        $deletePenduduk = KTP::where('id', $request->id)->delete();
+
+        if(!$deletePenduduk){
+            $code = 0;
+            $message = "Pengajuan gagal di hapus";
+        }else{
+            $code = 1;
+            $message = "Pengajuan berhasil di hapus";
+        }
+
+        return response()->json([
+            'code' => $code,
+            'message' => $message
+        ]);
+    }
 }
