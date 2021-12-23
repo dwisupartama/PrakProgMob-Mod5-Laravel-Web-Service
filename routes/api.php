@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\ModulAuth\PengaturanProfilController;
 use App\Http\Controllers\Api\ModulKTP\KTPController;
 
 use App\Http\Controllers\Api\ModulPenduduk\PendudukController;
-
+use App\Http\Controllers\Api\ModulVaksin\VaksinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +37,7 @@ Route::post('/ubahPassword', [PengaturanProfilController::class, 'ubahPassword']
 Route::post('/pengajuanKTP', [KTPController::class, 'buatPengajuanBaru'])->name('ktp.pengajuan');
 Route::get('/getPengajuanFor/{nik}', [KTPController::class, 'getPengajuanFor'])->name('ktp.getpengajuan');
 Route::post('/updatePengajuan', [KTPController::class, 'updatePengajuan'])->name('ktp.update');
+Route::get('/deletePengajuan/{id}', [KTPController::class, 'deletePengajuan'])->name('ktp.delete');
 
 //Route Modul Penduduk
 Route::get('/getPenduduk', [PendudukController::class, 'getPenduduk'])->name('penduduk.read');
@@ -45,4 +46,15 @@ Route::get('/editPenduduk/{nik}', [PendudukController::class, 'editPenduduk'])->
 Route::post('/updatePenduduk', [PendudukController::class, 'updatePenduduk'])->name('penduduk.update');
 Route::get('/resetPasswordPenduduk/{nik}', [PendudukController::class, 'resetPasswordPenduduk'])->name('penduduk.resetPassword');
 Route::get('/deletePenduduk/{nik}', [PendudukController::class, 'deletePenduduk'])->name('penduduk.delete');
+<<<<<<< HEAD
 Route::get('/searchPenduduk/{key}', [PendudukController::class, 'searchPenduduk'])->name('penduduk.search');
+=======
+
+//Route Modul Vaksin
+Route::post('/tambahVaksin', [VaksinController::class, 'tambahVaksin'])->name('vaksin.insert');
+Route::get('/daftarVaksin/{nik}', [VaksinController::class, 'daftarVaksin'])->name('vaksin.read');
+Route::get('/detailDataVaksin/{id}', [VaksinController::class, 'detailVaksin'])->name('vaksin.detail');
+Route::get('/daftarVaksinPegawai', [VaksinController::class, 'daftarVaksinPegawai'])->name('vaksin.read');
+// Route::post('/hapusVaksin', [VaksinController::class, 'hapusVaksin'])->name('vaksin.delete');
+// Route::post('/updateVaksin', [VaksinController::class, 'updateVaksin'])->name('vaksin.update');
+>>>>>>> a93407f09b07468010fcbdd05a351ec683708ed4
