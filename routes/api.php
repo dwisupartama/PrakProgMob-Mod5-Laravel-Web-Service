@@ -34,10 +34,15 @@ Route::post('/perbaharuiProfil', [PengaturanProfilController::class, 'perbaharui
 Route::post('/ubahPassword', [PengaturanProfilController::class, 'ubahPassword'])->name('profil.passupdate');
 
 //Route Modul KTP
-Route::post('/pengajuanKTP', [KTPController::class, 'buatPengajuanBaru'])->name('ktp.pengajuan');
-Route::get('/getPengajuanFor/{nik}', [KTPController::class, 'getPengajuanFor'])->name('ktp.getpengajuan');
-Route::post('/updatePengajuan', [KTPController::class, 'updatePengajuan'])->name('ktp.update');
-Route::get('/deletePengajuan/{id}', [KTPController::class, 'deletePengajuan'])->name('ktp.delete');
+Route::get('/penduduk/getPengajuanFor/{nik}', [KTPController::class, 'pendudukGetPengajuanFor'])->name('ktp.getpengajuan');
+Route::post('/penduduk/pengajuanKTP', [KTPController::class, 'pendudukBuatPengajuanBaru'])->name('ktp.pengajuan');
+Route::get('/penduduk/deletePengajuan/{id}', [KTPController::class, 'pendudukDeletePengajuan'])->name('ktp.delete');
+
+Route::post('/pegawai/updatePengajuan', [KTPController::class, 'pegawaiUpdatePengajuan'])->name('ktp.update');
+Route::get('/pegawai/allPengajuan', [KTPController::class, 'pegawaiAllPengajuan'])->name('ktp.all');
+Route::get('/pegawai/searchPengajuan/{key}', [KTPController::class, 'pegawaiSearchPengajuan'])->name('ktp.search');
+
+Route::get('/detailPengajuan/{id}', [KTPController::class, 'detailPengajuan'])->name('ktp.detail');
 
 //Route Modul Penduduk
 Route::get('/getPenduduk', [PendudukController::class, 'getPenduduk'])->name('penduduk.read');

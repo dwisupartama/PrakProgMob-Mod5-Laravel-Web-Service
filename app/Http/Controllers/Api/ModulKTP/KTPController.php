@@ -10,13 +10,31 @@ use Illuminate\Support\Facades\Hash;
 
 class KTPController extends Controller
 {
-    public function buatPengajuanBaru(Request $request){
+    public function pendudukGetPengajuanFor($nik){
+        $pengajuan = KTP::where('tb_ktp.nik', $nik)->get();
+
+        if(!$pengajuan){
+            $code = 0;
+            $message = "Tidak Ada Data Pengajuan Sebelumnya";
+        }else{
+            $code = 1;
+            $message = "Data pengajuan berhasil di ambil";
+        }
+
+        return response()->json([
+            'code' => $code,
+            'message' => $message,
+            'data' => $pengajuan
+        ]);
+    }
+
+    public function pendudukBuatPengajuanBaru(Request $request){
         $newKTP = new KTP;
         $newKTP->jenis_pengajuan = $request->jenis_pengajuan;
         $newKTP->tanggal_pengajuan = now();
         $newKTP->status_pengajuan = "Menunggu Konfirmasi";
         $newKTP->nik = $request->nik;
-        $newKTP->nama_lengkap = $request->nama;
+        $newKTP->nama_lengkap = $request->nama_lengkap;
         $newKTP->tempat_lahir = $request->tempat_lahir;
         $newKTP->tanggal_lahir = $request->tanggal_lahir;
         $newKTP->jenis_kelamin = $request->jenis_kelamin;
@@ -39,11 +57,32 @@ class KTPController extends Controller
 
         return response()->json([
             'code' => $code,
-            'message' => $message
+            'message' => $message,
+            'data' => null
         ]);
     }
     
-    public function updatePengajuan(Request $request){
+
+    public function pendudukDeletePengajuan(Request $request){
+        $deletePengajuan = KTP::where('id', $request->id)->delete();
+
+        if(!$deletePengajuan){
+            $code = 0;
+            $message = "Pengajuan gagal di hapus";
+        }else{
+            $code = 1;
+            $message = "Pengajuan berhasil di hapus";
+        }
+
+        return response()->json([
+            'code' => $code,
+            'message' => $message,
+            'data' => null
+        ]);
+    }
+
+    
+    public function pegawaiUpdatePengajuan(Request $request){
         $perbaharui = KTP::where('id', $request->id)->update([
             'status_pengajuan' => $request->status_pengajuan,
             'keterangan' => $request->keterangan,
@@ -62,41 +101,56 @@ class KTPController extends Controller
 
         return response()->json([
             'code' => $code,
-            'message' => $message
-        ]);
-    }
-
-    public function getPengajuanFor(Request $request){
-        $pengajuan = KTP::where('nik', $request->nik)->get();
-        if(!$pengajuan){
-            $code = 0;
-            $message = "Tidak Ada Data Pengajuan Sebelumnya";
-        }else{
-            $code = 1;
-            $message = "";
-        }
-
-        return response()->json([
-            'code' => $request->nik,
             'message' => $message,
-            'data' => $pengajuan
+            'data' => null
         ]);
     }
 
-    public function deletePengajuan(Request $request){
-        $deletePenduduk = KTP::where('id', $request->id)->delete();
+    public function pegawaiAllPengajuan(){
+        $allPengajuan = KTP::orderBy('updated_at','desc')->get();
 
-        if(!$deletePenduduk){
-            $code = 0;
-            $message = "Pengajuan gagal di hapus";
-        }else{
+        if($allPengajuan){
             $code = 1;
-            $message = "Pengajuan berhasil di hapus";
+            $message = "Data berhasil di ambil";
+        }else{
+            $code = 0;
+            $message = "Data gagal di ambil";
         }
 
         return response()->json([
             'code' => $code,
-            'message' => $message
+            'message' => $message,
+            'data' => $allPengajuan
+        ]);
+    }
+
+    public function detailPengajuan($id){
+        $pegajuanKTP = KTP::where('id',$id)->first();
+
+        if($pegajuanKTP){
+            $code = 1;
+            $message = "Pengajuan KTP berhasil di ambil";
+        }else{
+            $code = 0;
+            $message = "Pengajuan KTP gagal di ambil";
+        }
+
+        return response()->json([
+            'code' => $code,
+            'message' => $message,
+            'data' => $pegajuanKTP
+        ]);
+    }
+
+    
+
+    public function pegawaiSearchPengajuan($key){
+        $searchPengajuan = KTP::where('jenis_pengajuan','LIKE','%'.$key.'%')->orWhere('nama_lengkap','LIKE','%'.$key.'%')->orWhere('nik','LIKE','%'.$key.'%')->orWhere('status_pengajuan','LIKE','%'.$key.'%')->orderBy('updated_at','desc')->get();
+
+        return response()->json([
+            'code' => 1,
+            'message' => "Data Pengajuan berhasil diambil",
+            'data' => $searchPengajuan
         ]);
     }
 }
