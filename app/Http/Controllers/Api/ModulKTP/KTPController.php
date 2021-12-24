@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class KTPController extends Controller
 {
     public function pendudukGetPengajuanFor($nik){
-        $pengajuan = KTP::where('tb_ktp.nik', $nik)->get();
+        $pengajuan = KTP::where('tb_ktp.nik', $nik)->orderBy('updated_at','desc')->get();
 
         if(!$pengajuan){
             $code = 0;
