@@ -63,8 +63,8 @@ class KTPController extends Controller
     }
     
 
-    public function pendudukDeletePengajuan(Request $request){
-        $deletePengajuan = KTP::where('id', $request->id)->delete();
+    public function pendudukDeletePengajuan($id){
+        $deletePengajuan = KTP::where('id', $id)->delete();
 
         if(!$deletePengajuan){
             $code = 0;

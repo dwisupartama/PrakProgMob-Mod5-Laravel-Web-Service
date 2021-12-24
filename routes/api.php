@@ -6,7 +6,11 @@ use App\Http\Controllers\Api\ModulAuth\PengaturanProfilController;
 use App\Http\Controllers\Api\ModulKTP\KTPController;
 
 use App\Http\Controllers\Api\ModulPenduduk\PendudukController;
+
 use App\Http\Controllers\Api\ModulVaksin\VaksinController;
+
+use App\Http\Controllers\Api\ModulSurat\SuratController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,9 +58,25 @@ Route::get('/deletePenduduk/{nik}', [PendudukController::class, 'deletePenduduk'
 Route::get('/searchPenduduk/{key}', [PendudukController::class, 'searchPenduduk'])->name('penduduk.delete');
 
 //Route Modul Vaksin
-Route::post('/tambahVaksin', [VaksinController::class, 'tambahVaksin'])->name('vaksin.insert');
-Route::get('/daftarVaksin/{nik}', [VaksinController::class, 'daftarVaksin'])->name('vaksin.read');
+Route::post('/penduduk/tambahVaksin', [VaksinController::class, 'pendudukTambahVaksin'])->name('vaksin.insert');
+Route::get('/penduduk/daftarVaksin/{nik}', [VaksinController::class, 'pendudukDaftarVaksin'])->name('vaksin.read');
+Route::get('/penduduk/deleteVaksin/{id}', [VaksinController::class, 'pendudukDeleteVaksin'])->name('vaksin.delete');
+
+Route::post('/pegawai/updateVaksin', [VaksinController::class, 'pegawaiUpdateVaksin'])->name('vaksin.update');
+Route::get('/pegawai/daftarVaksinPegawai', [VaksinController::class, 'pegawaiDaftarVaksin'])->name('pvkasin.read');
+Route::get('/pegawai/searchVaksin{key}', [VaksinController::class, 'pegawaiSearchVaksin'])->name('vaksin.searh');
+
 Route::get('/detailDataVaksin/{id}', [VaksinController::class, 'detailVaksin'])->name('vaksin.detail');
-Route::get('/daftarVaksinPegawai', [VaksinController::class, 'daftarVaksinPegawai'])->name('vaksin.read');
-// Route::post('/hapusVaksin', [VaksinController::class, 'hapusVaksin'])->name('vaksin.delete');
-// Route::post('/updateVaksin', [VaksinController::class, 'updateVaksin'])->name('vaksin.update');
+
+//Route Modul Surat
+Route::post('/penduduk/tambahSurat', [SuratController::class, 'pendudukTambahSurat'])->name('surat.insert');
+Route::get('/penduduk/daftarSurat/{nik}', [SuratController::class, 'pendudukDaftarSurat'])->name('surat.read');
+Route::get('/penduduk/deleteSurat/{id}', [SuratController::class, 'pendudukDeleteSurat'])->name('surat.delete');
+
+Route::post('/pegawai/updateSurat', [SuratController::class, 'pegawaiUpdateSurat'])->name('surat.update');
+Route::get('/pegawai/daftarSuratPegawai', [SuratController::class, 'pegawaiDaftarSurat'])->name('psurat.read');
+Route::get('/pegawai/searchSurat{key}', [SuratController::class, 'pegawaiSearchSurat'])->name('surat.searh');
+
+Route::get('/detailDataSurat/{id}', [SuratController::class, 'detailSurat'])->name('surat.detail');
+
+Route::post('/testFileUpload', [SuratController::class, 'uploadFile']);
